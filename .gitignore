@@ -2,6 +2,14 @@
 bin/
 build/
 
+# CCLS
+# Cache
+.ccls-cache
+# confing
+.ccls
+# Clangd
+.cache/
+
 # Log output
 logs/
 
@@ -21,8 +29,6 @@ CMakeUserPresets.json
 
 
 # C++
-# Cache
-.ccls-cache
 # out
 out/
 
