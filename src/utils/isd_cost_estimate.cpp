@@ -11,7 +11,7 @@
 // string'g
 
 std::string qc_attack_type_to_string(QCAttackType type) {
-  switch(type) {
+  switch (type) {
   case QCAttackType::KRA1:
     return "KRA-1";
   case QCAttackType::KRA2:
@@ -27,8 +27,10 @@ std::string qc_attack_type_to_string(QCAttackType type) {
 
 std::string quantum_algorithm_to_string(QuantumAlgorithm algo) {
   switch (algo) {
-  case QuantumAlgorithm::Q_Lee_Brickell: return "Quantum Lee-Brickell";
-  case QuantumAlgorithm::Q_Stern: return "Quantum Stern";
+  case QuantumAlgorithm::Q_Lee_Brickell:
+    return "Quantum Lee-Brickell";
+  case QuantumAlgorithm::Q_Stern:
+    return "Quantum Stern";
   default:
     return "Unknown Algorithm";
   }
@@ -619,7 +621,6 @@ Result isd_log_cost_classic_BJMM(const uint32_t n, const uint32_t k,
               }
             }
           }
-
         } /*end of iteration over l */
         /* to review up to to here */
       } /* end for over eps2 */
@@ -782,7 +783,7 @@ Result isd_log_cost_quantum_Stern(const uint32_t n, const uint32_t k,
 /***************************Aggregation ***************************************/
 
 double get_qc_red_factor_classic_log(const uint32_t qc_order, const uint32_t n0,
-                             QCAttackType attack) {
+                                     QCAttackType attack) {
   /* For key recovery attacks (CFP) the advantage from quasi-cyclicity is p. For
    * a message recovery (SDP), the DOOM advantage is sqrt(p).
    *
@@ -813,9 +814,10 @@ Result c_isd_log_cost(const uint32_t n, const uint32_t k, const uint32_t t,
   // attack is useless if compute_qc_reduction_factor is false
 
   Result current_res, min_res;
-  double qc_red_factor = compute_qc_reduction_factor
-                             ? get_qc_red_factor_classic_log(qc_order, n - k, attack)
-                             : 0;
+  double qc_red_factor =
+      compute_qc_reduction_factor
+          ? get_qc_red_factor_classic_log(qc_order, n - k, attack)
+          : 0;
 
   double min_cost = n; // the cost cannot be greater than 2^n
 
@@ -857,7 +859,7 @@ Result c_isd_log_cost(const uint32_t n, const uint32_t k, const uint32_t t,
 }
 
 double get_qc_red_factor_quantum_log(const uint32_t qc_order, const uint32_t n0,
-                             QCAttackType attack) {
+                                     QCAttackType attack) {
   /* For key recovery attacks (CFP) the advantage from quasi-cyclicity is p. For
    * a message recovery (SDP), the DOOM advantage is sqrt(p).
    *
@@ -881,9 +883,10 @@ Result q_isd_log_cost(const uint32_t n, const uint32_t k, const uint32_t t,
                       std::unordered_set<QuantumAlgorithm> algs) {
   Result current_res, min_res;
   double min_cost = n; // cannot be greater than n
-  double qc_red_factor = compute_qc_reduction_factor
-                             ? get_qc_red_factor_quantum_log(qc_order, n - k, attack)
-                             : 0;
+  double qc_red_factor =
+      compute_qc_reduction_factor
+          ? get_qc_red_factor_quantum_log(qc_order, n - k, attack)
+          : 0;
 
   for (const auto &algo : algs) {
     switch (algo) {
