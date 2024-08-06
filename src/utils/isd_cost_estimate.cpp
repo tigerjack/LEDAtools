@@ -578,9 +578,11 @@ Result isd_log_cost_classic_BJMM(const uint32_t n, const uint32_t k,
 
               /*add the cost of building Layer 3 to cost_iter */
               NTL::RR cost_iter =
-                  NTL::to_RR(4) *
-                  (k + l + 2 * L3_list_len_real + r_2 +
-                   NTL::power(L3_list_len_real, 2) * NTL::to_RR(2 * p_3 * r_2));
+                  cost_gje /
+                      probability_k_by_k_is_inv(n_real - k_real - l_real) +
+                  NTL::to_RR(4) * (k + l + 2 * L3_list_len_real + r_2 +
+                                   NTL::power(L3_list_len_real, 2) *
+                                       NTL::to_RR(2 * p_3 * r_2));
 
               /* add the cost of building Layer 2 */
               cost_iter +=
